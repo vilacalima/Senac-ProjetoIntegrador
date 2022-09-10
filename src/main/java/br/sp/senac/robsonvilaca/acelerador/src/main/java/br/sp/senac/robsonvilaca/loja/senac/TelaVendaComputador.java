@@ -4,6 +4,10 @@
  */
 package br.sp.senac.robsonvilaca.loja.senac;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author robson.vlima3
@@ -142,6 +146,7 @@ public class TelaVendaComputador extends javax.swing.JFrame {
 
         bgSO.add(tgWindows);
         tgWindows.setText("Windows");
+        tgWindows.setActionCommand("Windows");
         tgWindows.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tgWindowsActionPerformed(evt);
@@ -150,6 +155,7 @@ public class TelaVendaComputador extends javax.swing.JFrame {
 
         bgSO.add(tgLinux);
         tgLinux.setText("Linux");
+        tgLinux.setActionCommand("Linux");
         tgLinux.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tgLinuxActionPerformed(evt);
@@ -271,8 +277,18 @@ public class TelaVendaComputador extends javax.swing.JFrame {
         );
 
         btnAdicionar.setText("Adicionar");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         bntRemover.setText("Remover");
+        bntRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRemoverActionPerformed(evt);
+            }
+        });
 
         btnConfirmar.setText("Confirmar");
 
@@ -360,6 +376,60 @@ public class TelaVendaComputador extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        
+        String tipoComputador ="";
+        if(rboPc.isSelected()){
+            tipoComputador = rboPc.getText();
+        } else if(rboNotebook.isSelected()){
+            tipoComputador = rboNotebook.getText();
+        } else if(rboNotebook.isSelected()){
+            tipoComputador = rboServidor.getText();
+        } else{
+            JOptionPane.showMessageDialog(this, "Selecione um tipo de PC!");
+        }
+        
+        String sistemaOperacional="";
+        sistemaOperacional = bgSO.getSelection().getActionCommand();
+        
+        String tipoHD = "";
+        tipoHD = cboHD.getSelectedItem().toString();
+        
+        String acessorios = "";
+        if(chkMochila.isSelected()){
+            acessorios += chkMochila.getText() + ", ";
+        }
+        if(chkHub.isSelected()){
+            acessorios += chkHub.getText() + ", ";
+        }
+        if(chkMouse.isSelected()){
+            acessorios += chkMouse.getText() + ", ";
+        }
+        
+        String itensLista = ""; 
+        List<String> listaItens = lstServicos.getSelectedValuesList();
+        for (String item : listaItens) {
+            itensLista += item + ", ";
+        }
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblCompras.getModel();
+        modelo.addRow(new String[]{tipoComputador,
+                                    sistemaOperacional,
+                                    acessorios,
+                                    itensLista}
+        );
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void bntRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRemoverActionPerformed
+        int indiceLinha = tblCompras.getSelectedRow();
+        if(indiceLinha >=0){
+        DefaultTableModel modelo = (DefaultTableModel) tblCompras.getModel();
+        modelo.removeRow(indiceLinha);            
+        } else{
+            JOptionPane.showMessageDialog(this, "Selecione uma linha");
+        }      
+    }//GEN-LAST:event_bntRemoverActionPerformed
 
     /**
      * @param args the command line arguments
