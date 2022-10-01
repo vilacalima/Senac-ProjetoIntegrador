@@ -59,6 +59,14 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                 txtIdFocusLost(evt);
             }
         });
+        txtId.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtIdMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtIdMouseExited(evt);
+            }
+        });
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
@@ -129,6 +137,11 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,7 +157,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(lblStatus)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,8 +177,8 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -207,6 +220,20 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private void txtDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyReleased
         txtDescricao.setText(txtDescricao.getText().toUpperCase());
     }//GEN-LAST:event_txtDescricaoKeyReleased
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        int x = evt.getX();
+        int y = evt.getY();
+        lblStatus.setText("Coordenadas: " + x + "," + y);
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void txtIdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMouseEntered
+        txtId.setBackground(Color.red);
+    }//GEN-LAST:event_txtIdMouseEntered
+
+    private void txtIdMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMouseExited
+        txtId.setBackground(Color.white);
+    }//GEN-LAST:event_txtIdMouseExited
 
     /**
      * @param args the command line arguments
